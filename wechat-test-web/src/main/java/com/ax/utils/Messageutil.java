@@ -7,7 +7,6 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +14,34 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Messageutil {
+public class MessageUtil {
+
+    public static final String MESSAGE_TEXT = "text";
+
+    public static final String MESSAGE_IMAGE = "image";
+
+    public static final String MESSAGE_VOICE = "voice";
+
+    public static final String MESSAGE_VIDEO = "video";
+
+    public static final String MESSAGE_SHORTVIDEO = "shortvideo";
+
+    public static final String MESSAGE_LINK = "link";
+
+    public static final String MESSAGE_LOCATION = "location";
+
+    public static final String MESSAGE_EVENT = "event";
+
+    public static final String MESSAGE_SUBSCRIBE = "subscribe";
+
+    public static final String MESSAGE_UNSUBSCRIBE = "unsubscribe";
+
+    public static final String MESSAGE_CLICK = "CLICK";
+
+    public static final String MESSAGE_VIEW = "VIEW";
+
+    public static final String MESSAGE_SCAN = "SCAN";
+
 
     /**
      * 将xml格式数据 转化为 Map
@@ -54,4 +80,35 @@ public class Messageutil {
         xStream.alias("xml",message.getClass());
         return  xStream.toXML(message);
     }
+
+    /**
+     *  主菜单消息方法
+     * */
+    public static String menuMessage() {
+
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("欢迎关注本公众号：这是一次新的尝试！请选择：\n\n");
+        stringBuffer.append("1.Java是世界上最好的语言！！！\n\n");
+        stringBuffer.append("2.Java不是世界上最好的语言！！！\n\n");
+        stringBuffer.append("回复 ? 调出主菜单。\n\n");
+        return stringBuffer.toString();
+    }
+
+    /**
+     * 初始化消息
+     * */
+    public static   String initMessage(String ToUserName,String FromUserName,String content) {
+
+        Message message = new Message();
+        message.setFromUserName(ToUserName); //？？？ 此处存在问题，参数的意义是什么
+        message.setToUserName(FromUserName);
+        message.setMsgType(MessageUtil.MESSAGE_TEXT);
+        message.setCreateTime(System.currentTimeMillis());
+        message.setContent(content);
+
+        String xml = MessageUtil.objectToXml(message);
+
+        return xml;
+    }
+
 }
