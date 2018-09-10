@@ -48,7 +48,9 @@ public class WeChatController {
                     s = MessageUtil.initMessage(ToUserName, FromUserName, "老夫掐指一算，你的开发时间应该不长！！！");
                 }else if("?".equals(Content) || "？".equals(Content)) {
                     s = MessageUtil.initMessage(ToUserName, FromUserName, MessageUtil.menuMessage());
-                }else{
+                } else if("3".equals(Content)) {
+                    s = MessageUtil.initImageMessage(ToUserName,FromUserName);
+                } else {
                     s = MessageUtil.initMessage(ToUserName, FromUserName,"没让选的别瞎选！！！");
                 }
 //                Message message = new Message();
