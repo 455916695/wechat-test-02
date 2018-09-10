@@ -19,7 +19,7 @@
     <!--<mvc:resources mapping="/css/**" location="/css/" />-->
 
     <bean id="checkUtil" class="com.ax.utils.CheckUtil" />
-    <bean id="messageutil" class="com.ax.utils.Messageutil" />
+    <bean id="messageutil" class="com.ax.utils.MessageUtil" />
 
     <!--视图解析器-->
     <bean  class="org.springframework.web.servlet.view.InternalResourceViewResolver">

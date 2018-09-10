@@ -1,6 +1,5 @@
 package com.ax.web;
 
-import com.ax.pojo.Message;
 import com.ax.utils.CheckUtil;
 import com.ax.utils.MessageUtil;
 import org.springframework.http.MediaType;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 import java.util.Map;
 
 @Controller
@@ -65,7 +63,7 @@ public class WeChatController {
 //                        +"\n您发送的内容是:"+Content
 //                        +"\n你再发一句试试！！！"
 //                );
-//                 s = MessageUtil.objectToXml(message);
+//                 s = MessageUtil.java.objectToXml(message);
 
             } else if (MsgType.equals(MessageUtil.MESSAGE_EVENT)) {  //判断是否是事件
                 String eventType = map.get("Event");  //获取具体事件类型
