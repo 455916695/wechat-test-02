@@ -16,6 +16,14 @@
         <dom4j.versino>1.6.1</dom4j.versino>
         <xstream.version>1.4.7</xstream.version>
 
+        <commons-beanutils>1.7.0</commons-beanutils>
+        <commons-collections>3.2.1</commons-collections>
+        <commons-lang>2.5</commons-lang>
+        <commons-logging>1.0.4</commons-logging>
+        <ezmorph>1.0.6</ezmorph>
+        <httpclient>4.2.5</httpclient>
+        <httpcore>4.2.4</httpcore>
+        <json-lib>2.3</json-lib>
 
         <junit.version>4.12</junit.version>
         <spring.version>4.2.4.RELEASE</spring.version>
@@ -31,9 +39,9 @@
         <servlet-api.version>2.5</servlet-api.version>
         <jsp-api.version>2.0</jsp-api.version>
         <joda-time.version>2.5</joda-time.version>
-        <commons-lang3.version>3.3.2</commons-lang3.version>
-        <commons-io.version>1.3.2</commons-io.version>
-        <commons-net.version>3.3</commons-net.version>
+        <!--<commons-lang3.version>3.3.2</commons-lang3.version>-->
+        <!--<commons-io.version>1.3.2</commons-io.version>-->
+        <!--<commons-net.version>3.3</commons-net.version>-->
         <pagehelper.version>3.4.2-fix</pagehelper.version>
         <jsqlparser.version>0.9.1</jsqlparser.version>
         <commons-fileupload.version>1.3.1</commons-fileupload.version>
@@ -63,6 +71,49 @@
                 <version>${xstream.version}</version>
             </dependency>
 
+            <!-- commons 一系列  -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons-logging}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.ezmorph</groupId>
+                <artifactId>ezmorph</artifactId>
+                <version>${ezmorph}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${httpcore}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.json-lib</groupId>
+                <artifactId>json-lib</artifactId>
+                <version>${json-lib}</version>
+                <classifier>jdk15</classifier>
+            </dependency>
+
             <!-- 时间操作组件 -->
             <dependency>
                 <groupId>joda-time</groupId>
@@ -70,21 +121,21 @@
                 <version>${joda-time.version}</version>
             </dependency>
             <!-- Apache工具组件 -->
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons-lang3.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>${commons-io.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-net</groupId>
-                <artifactId>commons-net</artifactId>
-                <version>${commons-net.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.apache.commons</groupId>-->
+                <!--<artifactId>commons-lang3</artifactId>-->
+                <!--<version>${commons-lang3.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.apache.commons</groupId>-->
+                <!--<artifactId>commons-io</artifactId>-->
+                <!--<version>${commons-io.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>commons-net</groupId>-->
+                <!--<artifactId>commons-net</artifactId>-->
+                <!--<version>${commons-net.version}</version>-->
+            <!--</dependency>-->
             <!-- Jackson Json处理工具包 -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>

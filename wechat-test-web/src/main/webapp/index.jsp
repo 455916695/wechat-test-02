@@ -1,12 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%--
+  Created by IntelliJ IDEA.
+  User: dell3020mt-50
+  Date: 2018/6/27
+  Time: 18:44
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <meta http-equiv="content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
-</head>
-<body>
-        Hello World
-</body>
+  <head>
+    <title>$Title$</title>
+
+  </head>
+
+  <body>
+      <%--<jsp:forward page="${pageContext.request.contextPath}/downLoad.action"  />--%>
+    <%--13_TCNrFLWnKPjux1LEC0Q4g63tvEqoJlA1T413Jsv8wPf43JkYVfmByks61T6sIF4EWBClANSEHClbw6jfBXy-s3d-zHRdVW6Y6kdJR9dxuvhYGETVMtfbgJciQZ4RKOjAGAMFJ--%>
+      <form  action="https://api.weixin.qq.com/cgi-bin/media/upload?access_token=${accessToken}&type=${type}"  enctype="multipart/form-data" method="POST" >
+        selectimage: <input id="upload" type="file" name="myfile"/><br>
+        <input id="button" type="submit" value="upload"/>
+      </form>
+  </body>
+
 </html>

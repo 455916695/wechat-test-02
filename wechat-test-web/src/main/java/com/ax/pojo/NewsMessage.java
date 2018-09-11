@@ -5,14 +5,14 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ImageMessage extends Message {
+public class NewsMessage extends Message {
     private  int ArticleCount;  //图文消息条数
-    private List<Image> Articles;
+    private List<News> Articles;
 
-    public ImageMessage() {
+    public NewsMessage() {
     }
 
-    public ImageMessage(String ToUserName, String FromUserName, Long CreateTime, String MsgType, String Content, String MsgId, int ArticleCount, List<Image> Articles) {
+    public NewsMessage(String ToUserName, String FromUserName, Long CreateTime, String MsgType, String Content, String MsgId, int ArticleCount, List<News> Articles) {
         super(ToUserName, FromUserName, CreateTime, MsgType, Content, MsgId);
         this.ArticleCount = ArticleCount;
         this.Articles = Articles;
@@ -26,11 +26,11 @@ public class ImageMessage extends Message {
         this.ArticleCount = ArticleCount;
     }
 
-    public List<Image> getArticles() {
+    public List<News> getArticles() {
         return Articles;
     }
 
-    public void setArticles(List<Image> Articles) {
+    public void setArticles(List<News> Articles) {
         this.Articles = Articles;
     }
 }

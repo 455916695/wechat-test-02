@@ -1,7 +1,7 @@
 package com.ax.utils;
 
-import com.ax.pojo.Image;
-import com.ax.pojo.ImageMessage;
+import com.ax.pojo.News;
+import com.ax.pojo.NewsMessage;
 import com.ax.pojo.TextMessage;
 import com.thoughtworks.xstream.XStream;
 import org.dom4j.Document;
@@ -91,12 +91,12 @@ public class MessageUtil {
      * @param imageMessage
      * @return  String
      * */
-    public  static String imageMessageToXml (ImageMessage imageMessage) {
+    public  static String imageMessageToXml (NewsMessage imageMessage) {
         XStream xstream = new XStream();
         //将xml的根节点替换成<xml>  默认为NewsMessage的包名
         xstream.alias("xml", imageMessage.getClass());
         //同理，将每条图文消息News类的报名，替换为<item>标签
-        xstream.alias("item", new Image().getClass());
+        xstream.alias("item", new News().getClass());
         return xstream.toXML(imageMessage);
 
     }
@@ -137,11 +137,11 @@ public class MessageUtil {
     /**
      * 初始化图文消息
      * */
-    public static   String initImageMessage(String ToUserName,String FromUserName ) {
+    public static   String initNewsMessage(String ToUserName,String FromUserName ) {
 
-        List<Image> imagesList = new ArrayList<>();
+        List<News> imagesList = new ArrayList<>();
 
-        Image image = new Image();
+        News image = new News();
         image.setTitle("欢迎来到阿闲界");
         image.setDescription("阿闲界，闲到你无可奈何！！！");
         image.setPicUrl("http://pic54.nipic.com/file/20141201/13740598_112413393000_2.jpg");  //
@@ -149,7 +149,7 @@ public class MessageUtil {
 
         imagesList.add(image);
 
-         ImageMessage imageMessage = new ImageMessage();
+         NewsMessage imageMessage = new NewsMessage();
 
          imageMessage.setToUserName(FromUserName);      // 消息接收者
          imageMessage.setFromUserName(ToUserName);     //  消息发送者
@@ -160,7 +160,7 @@ public class MessageUtil {
 
 
         String xml = MessageUtil.imageMessageToXml(imageMessage);
-        System.out.println(xml);
+        //System.out.println(xml);
         return xml;
     }
 

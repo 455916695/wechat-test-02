@@ -1,15 +1,19 @@
 package com.ax.web;
 
+import com.ax.pojo.AccessToken;
 import com.ax.utils.CheckUtil;
 import com.ax.utils.MessageUtil;
+import com.ax.utils.WeChatUtil;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.Map;
 
 @Controller
@@ -49,7 +53,7 @@ public class WeChatController {
                 }else if("?".equals(Content) || "？".equals(Content)) {
                     s = MessageUtil.initMessage(ToUserName, FromUserName, MessageUtil.menuMessage());
                 } else if("3".equals(Content)) {
-                    s = MessageUtil.initImageMessage(ToUserName,FromUserName);
+                    s = MessageUtil.initNewsMessage(ToUserName,FromUserName);
                 } else {
                     s = MessageUtil.initMessage(ToUserName, FromUserName,"没让选的别瞎选！！！");
                 }
@@ -79,6 +83,17 @@ public class WeChatController {
             e.printStackTrace();
         }
         return s;
+    }
+
+    /**
+     * 文件上传
+     * */
+    @RequestMapping("/upload")
+    public String upload(Model model) throws IOException {
+        AccessToken accessToken = WeChatUtil.getAccessToken();     //此处设计有很大的问题，，， 如何判断token 是否失效
+        model.addAttribute("accessToken",accessToken.getToken());  //index.jsp上传文件后
+        model.addAttribute("type","image");
+        return  "upload";
     }
 
 }
