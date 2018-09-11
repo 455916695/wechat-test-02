@@ -27,6 +27,7 @@ public class WeChatUtil {
     private  static  final  String CREATE_MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
     private static  final  String CLICK = "click";
     private static final String VIEW = "view";
+    private static final String PIC_SYSPHOTO = "pic_sysphoto";
 
     /**
      *  编写Get请求的方法，但没有参数传递的时候，可以使用Get请求
@@ -138,10 +139,16 @@ public class WeChatUtil {
         viewButton23.setUrl("http://media1.rrl360.com/product/0001/73/thumb_72173_default.jpg");
 
 
-        ClickButton button31 = new ClickButton();
-        button31.setType(CLICK);
-        button31.setName("呼叫菜单");
-        button31.setKey("?");
+        ClickButton clickButton31 = new ClickButton();
+        clickButton31.setType(CLICK);
+        clickButton31.setName("呼叫菜单");
+        clickButton31.setKey("?");
+
+        ClickButton clickButton32 = new ClickButton();
+        clickButton32.setType(PIC_SYSPHOTO);
+        clickButton32.setName("发送自拍");
+        clickButton32.setKey("9");
+
 
         Button button1 = new Button();
         button1.setName("菜单体验");
@@ -152,7 +159,10 @@ public class WeChatUtil {
         button2.setName("链接体验");
         button2.setSub_button(new Button[]{viewButton21,viewButton22,viewButton23});
 
-        menu.setButton(new Button[]{button1,button2,button31});
+        Button button3 = new Button();
+        button3.setName("功能体验");
+        button3.setSub_button(new Button[]{clickButton31,clickButton32});
+        menu.setButton(new Button[]{button1,button2,button3});
 
         return  menu;
     }
