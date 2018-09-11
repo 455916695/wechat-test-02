@@ -1,6 +1,5 @@
 package com.ax.pojo;
 
-import org.springframework.stereotype.Component;
 
 
 

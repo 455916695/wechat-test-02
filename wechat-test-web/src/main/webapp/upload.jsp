@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Cache-Control" content="max-age=300" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>${query} - 商品搜索 - 宜立方商城</title>
+<title>${query}图片上传</title>
 <script type="text/javascript" src="/js/jquery.js"></script>
 </head>
 <body>
@@ -21,25 +21,25 @@
                 <%--</a>--%>
         </form>
 
-
+<%--    存在一个问题，使用ajax上传文件，不能获取跨域返回的数据        --%>
         <script type="text/javascript">
             $(function () {
-                alert("页面加载事件触发了");
+//                alert("页面加载事件触发了");
                 $("#button").click(function () {
-                    alert("点击事件触发了");
+//                    alert("点击事件触发了");
                     var token = $("#token").val();
                     var type =  $("#type").val();
-                    alert(token +"==="+type);
+//                    alert(token +"==="+type);
                     var url  = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token="+token+"&type="+type;
-                    alert(url);
+//                    alert(url);
                     var formData  = new FormData();
-                    alert("创建 FormData");
+//                    alert("创建 FormData");
                     var img_file = document.getElementById("upload");
-                    alert(img_file);
+//                    alert(img_file);
                     var  fileObj = img_file.files[0];
-                    alert(fileObj);
+//                    alert(fileObj);
                       formData.append("classIcon",fileObj);
-                    alert("ajax之前");
+//                    alert("ajax之前");
                     $.ajax({
                         url : url,
                         type: 'POST',

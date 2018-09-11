@@ -1,20 +1,20 @@
 package com.ax.web;
 
 import com.ax.pojo.AccessToken;
+import com.ax.pojo.Message;
+import com.ax.pojo.MusicMessage;
 import com.ax.utils.CheckUtil;
 import com.ax.utils.MessageUtil;
 import com.ax.utils.WeChatUtil;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class WeChatController {
@@ -36,6 +36,11 @@ public class WeChatController {
         try {
             //将request请求，传到Message工具类的转换方法中，返回接收到的Map对象
             Map<String, String> map = MessageUtil.xmlToMap(request);
+//            Set<String> strings = map.keySet();
+//            for (String key : strings) {
+//                String s1 = map.get(key);
+//                System.out.println(key +"==="+s1+ "\n");
+//            }
 
             //从集合中，获取XML各个节点的内容
             String ToUserName = map.get("ToUserName");  //开发者微信号
@@ -50,32 +55,39 @@ public class WeChatController {
                     s = MessageUtil.initMessage(ToUserName, FromUserName, "果真是同道中人！！！");
                 } else if ("2".equals(Content)) {
                     s = MessageUtil.initMessage(ToUserName, FromUserName, "老夫掐指一算，你的开发时间应该不长！！！");
-                }else if("?".equals(Content) || "？".equals(Content)) {
+                }else if("?".equals(Content) || "？".equals(Content)|| "菜单".equals(Content) || "功能".equals(Content)) {
                     s = MessageUtil.initMessage(ToUserName, FromUserName, MessageUtil.menuMessage());
                 } else if("3".equals(Content)) {
                     s = MessageUtil.initNewsMessage(ToUserName,FromUserName);
+                } else if ("4".equals(Content)) {
+                    s = MessageUtil.initImageMessage(ToUserName,FromUserName);
+                }else if("5".equals(Content)) {
+                    s = MessageUtil.initMusicMessage(ToUserName,FromUserName);
                 } else {
                     s = MessageUtil.initMessage(ToUserName, FromUserName,"没让选的别瞎选！！！");
                 }
-//                Message message = new Message();
-//                message.setToUserName(FromUserName);  //用户名
-//                message.setFromUserName(ToUserName);  //openId
-//                message.setMsgType("text");        //类型
-//                message.setCreateTime(new Date().getTime( ));
-//                message.setContent("您好! "+FromUserName+"\n我是:"+ToUserName+"\n"
-//                    +"\n您发送的消息类型为："+MsgType
-//                    +"\n您发送的时间为："+CreateTime
-//                        +"\n我回复的时间为:"+message.getCreateTime()
-//                        +"\n您发送的内容是:"+Content
-//                        +"\n你再发一句试试！！！"
-//                );
-//                 s = MessageUtil.java.objectToXml(message);
 
             } else if (MsgType.equals(MessageUtil.MESSAGE_EVENT)) {  //判断是否是事件
                 String eventType = map.get("Event");  //获取具体事件类型
                 if (eventType.equals(MessageUtil.MESSAGE_SUBSCRIBE)) {  //判断是否为关注事件
                     //如果是关注事件，就给客户响应一个主菜单消息
                     s = MessageUtil.initMessage(ToUserName, FromUserName, MessageUtil.menuMessage());
+                }else if(eventType.equals(MessageUtil.MESSAGE_CLICK)){
+                    String key = map.get("EventKey");  //获取click 类型按钮的 key
+                    if ("1".equals(key)) {
+                        s = MessageUtil.initMessage(ToUserName, FromUserName, "果真是同道中人！！！");
+                    } else if ("2".equals(key)) {
+                        s = MessageUtil.initMessage(ToUserName, FromUserName, "老夫掐指一算，你的开发时间应该不长！！！");
+                    }else if("?".equals(key)) {
+                        s = MessageUtil.initMessage(ToUserName, FromUserName, MessageUtil.menuMessage());
+                    } else if("3".equals(key)) {
+                        s = MessageUtil.initNewsMessage(ToUserName,FromUserName);
+                    } else if ("4".equals(key)) {
+                        s = MessageUtil.initImageMessage(ToUserName,FromUserName);
+                    }else if("5".equals(key)) {
+                        s = MessageUtil.initMusicMessage(ToUserName,FromUserName);
+                    }
+
                 }
             }
 
@@ -89,11 +101,11 @@ public class WeChatController {
      * 文件上传
      * */
     @RequestMapping("/upload")
-    public String upload(Model model) throws IOException {
+    public String upload(Model model,String type) throws IOException {
         AccessToken accessToken = WeChatUtil.getAccessToken();     //此处设计有很大的问题，，， 如何判断token 是否失效
         model.addAttribute("accessToken",accessToken.getToken());  //index.jsp上传文件后
-        model.addAttribute("type","image");
-        return  "upload";
+        model.addAttribute("type",type);
+        return  "index";
     }
 
 }
